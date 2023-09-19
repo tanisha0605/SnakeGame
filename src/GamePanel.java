@@ -24,7 +24,23 @@ public class GamePanel extends JPanel implements ActionListener {
     boolean running=false;
     Timer timer;
     Random random;
+    private JButton playAgainButton;
     GamePanel(){
+        playAgainButton = new JButton("Play Again");
+        playAgainButton.setFocusable(false);
+        playAgainButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                resetGame();
+            }
+        });
+        setLayout(new BorderLayout());
+
+
+        add(playAgainButton, BorderLayout.SOUTH);
+
+        playAgainButton.setVisible(false);
         random = new Random();
         this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
         this.setBackground(Color.BLACK);
@@ -32,6 +48,21 @@ public class GamePanel extends JPanel implements ActionListener {
         this.addKeyListener(new MyKeyAdapter());
         startGame();
     }
+    public void resetGame(){
+        running = true;
+        direction = 'R';
+        bodyParts = 6;
+        applesEaten = 0;
+        newApple();
+        for (int i = 0; i < bodyParts; i++) {
+            x[i] = 0;
+            y[i] = 0;
+        }
+        playAgainButton.setVisible(false); // Hide the button again
+        timer.restart(); // Restart the timer
+    }
+
+
     public void startGame(){
         newApple();
         running=true;
@@ -147,6 +178,8 @@ public class GamePanel extends JPanel implements ActionListener {
         FontMetrics metrics=getFontMetrics(g.getFont()); //used to align text in centre of screen
         g.drawString("Game Over",(SCREEN_WIDTH-metrics.stringWidth("Game Over"))/2,SCREEN_HEIGHT/2);
 
+        playAgainButton.setVisible(true);
+
     }
     public void actionPerformed(ActionEvent e){
         if(running){
@@ -155,6 +188,7 @@ public class GamePanel extends JPanel implements ActionListener {
             checkCollisions();
         }
         repaint();
+
     }
     public class MyKeyAdapter extends KeyAdapter{
         @Override
