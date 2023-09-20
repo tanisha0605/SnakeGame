@@ -8,7 +8,7 @@ public class GameFrame extends JFrame  {
       this.add(new GamePanel());
 
       this.setVisible(true);
-      this.setLocationRelativeTo(null);
+      this.setLocation(500,200);
       this.setDefaultCloseOperation(EXIT_ON_CLOSE);
       this.pack();
       this.setResizable(false);
