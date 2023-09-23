@@ -10,3 +10,7 @@ the game is marked over. <br>
 2.Score increases as the snake eats food. <br>
 3.The game ends if the snake hits its own body or the border game.<br>
 4.Press play again to start playing from the start.
+### Video:
+
+https://github.com/tanisha0605/SnakeGame/assets/144723509/f6dec906-788c-4e74-8f2f-4176193b733d
+
